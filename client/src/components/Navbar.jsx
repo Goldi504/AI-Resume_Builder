@@ -1,15 +1,19 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { logout } from '../app/features/authSlice'
 
 const Navbar = () => {
 
     
-    const user = {name: 'John Doe'}
+    const {user} = useSelector(state => state.auth)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const logoutUser = () =>{
         navigate('/')
-    }
+        dispatch(logout())
+    } 
   return (
     <div className='shadow bg-white'>
         <nav className='flex items-center justify-between max-w-7xl 

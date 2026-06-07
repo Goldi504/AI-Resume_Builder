@@ -1,31 +1,96 @@
-import mongoose from "mongoose";
-import bcrypt from 'bcrypt'
+// import mongoose from "mongoose";
+// import bcrypt from 'bcrypt'
 
-const UserSchema = new mongoose.Schema({
-    name:{
-        type:String ,
-        required:true
+// const UserSchema = new mongoose.Schema({
+//     name:{
+//         type:String ,
+//         required:true
 
-    },
-    email:{
-         type:String ,
-        required:true,
-        unique:true
+//     },
+//     email:{
+//          type:String ,
+//         required:true,
+//         unique:true
 
-    },
-    password:
-    {
-         type:String ,
-        required:true
+//     },
+//     password:
+//     {
+//          type:String ,
+//         required:true
   
+//     },
+
+//     })
+
+//    UserSchema.methods.comparePassword = function (password) {
+//    return bcrypt.compare(password, this.password);
+//     }
+
+//     const User = mongoose.model("User" , UserSchema)
+
+//     export default User;
+
+// import mongoose from "mongoose";
+// import bcrypt from "bcrypt";
+
+// const UserSchema = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true
+//   },
+
+//   email: {
+//     type: String,
+//     required: true,
+//     unique: true
+//   },
+
+//   password: {
+//     type: String,
+//     required: true
+//   }
+// });
+
+// UserSchema.methods.comparePassword = async function (password) {
+//   return await bcrypt.compare(password, this.password);
+// };
+
+// const User = mongoose.model("User", UserSchema);
+
+// export default User;
+
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
 
-    })
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
 
-    UserSchema.methods.comparePassword = function(password) {
-        return bcrypt.compareSync(password,this.password)
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-    }
-    const User = mongoose.model("User" , UserSchema)
+// Compare password method
+userSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
-    export default User;
+// IMPORTANT
+const User = mongoose.model("User", userSchema);
+
+export default User;
