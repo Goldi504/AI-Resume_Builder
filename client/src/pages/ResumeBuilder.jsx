@@ -199,8 +199,7 @@ const ResumeBuilder = () => {
       formData.append("resumeId", resumeId);
       formData.append("resumeData", JSON.stringify(updatedResumeData));
       removeBackground && formData.append("removeBackground", "yes");
-      // typeof resumeData.personal_info.image === 'object' && formData.append("image",
-      //   resumeData.personal_info.image)
+      
 
       if (resumeData.personal_info.image instanceof File) {
         formData.append("image", resumeData.personal_info.image);
@@ -211,7 +210,7 @@ const ResumeBuilder = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      //  console.log("Loaded Resume =", data.resume);
+      
       setResumeData(data.resume);
       toast.success(data.message);
     } catch (error) {
