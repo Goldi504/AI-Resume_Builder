@@ -1,5 +1,5 @@
-module.exports = {
-  rewrites: [
+{
+  "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
